@@ -16,9 +16,9 @@ void setup() {
 }
 
 void loop() {
-  oneAfterAnotherNoLoop();
+  // oneAfterAnotherNoLoop();
   
-  // oneAfterAnotherLoop();
+  oneAfterAnotherLoop();
   
   // oneOnAtATime();
   
@@ -26,7 +26,7 @@ void loop() {
 }
 
 /*
- * oneAfterAnotherNoLoop() - will lige one LED then delay for delayTime the light
+ * oneAfterAnotherNoLoop() - will light one LED then delay for delayTime the light
  * the next LED until all LEDs are on.  It will then turn them off one after
  * another.
  *
@@ -73,3 +73,27 @@ void loop() {
    digitalWrite(ledPins[0], LOW);
    delay(delayTime);
  }
+ 
+/*
+ * oneAfterAnotherLoop() - will light one LED then delay for delayTime the light
+ * the next LED until all LEDs are on.  It will then turn them off one after
+ * another.
+ *
+ * This is just like oneAfterAnotherNoLoop except it uses a loop
+ */
+void oneAfterAnotherLoop() {
+
+  int delayTime = 50;
+   
+   // Turn each LED on
+   for(int i = 0; i < 8; i++) {
+     digitalWrite(ledPins[i], HIGH);
+     delay(delayTime);
+   }
+   
+   // Turn each LED off
+   for(int i = 7; i >= 0; i--) {
+     digitalWrite(ledPins[i], LOW);
+     delay(delayTime);
+   }
+}
