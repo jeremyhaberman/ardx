@@ -22,7 +22,9 @@ void loop() {
   
   // oneOnAtATime();
   
-  inAndOut();
+  // inAndOut();
+  
+  progressBar();
 }
 
 /*
@@ -176,6 +178,41 @@ void inAndOut() {
     
     if (i != 0) {
       delay(delayTime);
+    }
+  }
+}
+
+/*
+ * progressBar() - show progress by moving one turned-off LED across the row
+ */
+void progressBar() {
+  
+  int delayTime = 100;
+  
+  for (int i = 0; i < 8; i++) {
+    turnOnAllBut(ledPins, ledPins[i]);
+    delay(delayTime);
+  }
+}
+
+/*
+ * turnOnAllBut(int pin) - turns on all pins except one
+ */
+void turnOnAllBut(int *pins, int pin) {
+
+  int count = sizeof(pins) / sizeof(int); 
+  
+  // Turn on pins
+  for(int i = 0; i < 8; i++) {
+    if (pins[i] != pin) {
+      digitalWrite(pins[i], HIGH);
+    }
+  }
+  
+  // Turn off pin
+  for(int i = 0; i < 8; i++) {
+    if (pins[i] == pin) {
+      digitalWrite(pins[i], LOW);
     }
   }
 }
