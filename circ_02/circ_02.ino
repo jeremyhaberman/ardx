@@ -20,9 +20,9 @@ void loop() {
   
   // oneAfterAnotherLoop();
   
-  oneOnAtATime();
+  // oneOnAtATime();
   
-  // inAndOut();
+  inAndOut();
 }
 
 /*
@@ -123,4 +123,59 @@ void turnPinOnAndOff(int pin, int delayTime) {
   delay(delayTime);
   digitalWrite(pin, LOW);
   delay(delayTime);
+}
+
+/*
+ * inAndOut() - This will turn on the two middle LEDs then the next two out
+ * making an in and out look
+ */
+void inAndOut() {
+
+  // the time (in milliseconds) to pause between LEDs
+  int delayTime = 200; 
+  
+  // runs the LEDs out from the middle
+  for(int i = 0; i < 4; i++) {
+    
+    int offLED = i - 1;
+    if (i == 0) {
+      offLED = 3;
+    }
+  
+    int onLED1 = 3 - i;
+    int onLED2 = 4 + i;
+    int offLED1 = 3 - offLED;
+    int offLED2 = 4 + offLED;
+     
+    digitalWrite(ledPins[onLED1], HIGH);
+    digitalWrite(ledPins[onLED2], HIGH);  
+    digitalWrite(ledPins[offLED1], LOW);
+    digitalWrite(ledPins[offLED2], LOW);
+    
+    if (i != 3) {
+      delay(delayTime);
+    }
+  }
+  
+  //runs the LEDs into the middle
+  for(int i = 3; i >= 0; i--){
+    int offLED = i + 1;
+    if(i == 3) {
+      offLED = 0;
+    }            
+                 
+    int onLED1 = 3 - i;
+    int onLED2 = 4 + i;
+    int offLED1 = 3 - offLED;
+    int offLED2 = 4 + offLED;
+    
+    digitalWrite(ledPins[onLED1], HIGH);
+    digitalWrite(ledPins[onLED2], HIGH);    
+    digitalWrite(ledPins[offLED1], LOW);    
+    digitalWrite(ledPins[offLED2], LOW);        
+    
+    if (i != 0) {
+      delay(delayTime);
+    }
+  }
 }
