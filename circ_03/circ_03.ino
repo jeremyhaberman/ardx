@@ -12,8 +12,8 @@ void setup() {
 
 void loop() {
   // motorOnThenOff();
-  motorOnThenOffWithSpeed();
-  // motorAcceleration();
+  // motorOnThenOffWithSpeed();
+  motorAcceleration();
 }
 
 /*
@@ -39,4 +39,18 @@ void motorOnThenOffWithSpeed() {
   delay(onTime);
   analogWrite(motorPin, offSpeed);
   delay(offTime);
+}
+
+void motorAcceleration() {
+  int delayTime = 50;
+  
+  for(int i = 0; i < 256; i++) {
+    analogWrite(motorPin, i);
+    delay(delayTime);
+  }
+  
+  for(int i = 255; i >= 0; i--) {
+    analogWrite(motorPin, i);
+    delay(delayTime);
+  }
 }
