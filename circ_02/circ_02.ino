@@ -18,9 +18,9 @@ void setup() {
 void loop() {
   // oneAfterAnotherNoLoop();
   
-  oneAfterAnotherLoop();
+  // oneAfterAnotherLoop();
   
-  // oneOnAtATime();
+  oneOnAtATime();
   
   // inAndOut();
 }
@@ -96,4 +96,31 @@ void oneAfterAnotherLoop() {
      digitalWrite(ledPins[i], LOW);
      delay(delayTime);
    }
+}
+
+/*
+ * oneOnAtATime() - turns each LED on and off, one at a time
+ */
+void oneOnAtATime() {
+  
+  int delayTime = 100;
+  
+  for(int i = 0; i < 8; i++) {
+    turnPinOnAndOff(ledPins[i], delayTime);
+  }
+  
+  for(int i = 6; i > 0; i--) {
+    turnPinOnAndOff(ledPins[i], delayTime);
+  }
+}
+
+/*
+ * turnPinOnAndOff(int pin, int delayTime) - turns a pin on and off
+ */
+void turnPinOnAndOff(int pin, int delayTime) {
+  
+  digitalWrite(pin, HIGH);
+  delay(delayTime);
+  digitalWrite(pin, LOW);
+  delay(delayTime);
 }
